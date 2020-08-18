@@ -663,6 +663,43 @@ files:
 - name: src/engine/DBServiceImpl.java
   visible: true
   learner_created: true
+- name: src/engine/User.java
+  visible: true
+  learner_created: true
+- name: src/engine/DTOUser.java
+  visible: true
+  learner_created: true
+- name: src/engine/UserRepository.java
+  visible: true
+  learner_created: true
+- name: src/engine/WebSecurityConfig.java
+  visible: true
+  learner_created: true
+- name: src/engine/UserService.java
+  visible: true
+  learner_created: true
+- name: src/engine/BCryptEncoderConfig.java
+  visible: true
+  learner_created: true
+- name: src/engine/AuthController.java
+  visible: true
+  learner_created: true
+- name: src/engine/UserNotFoundException.java
+  visible: true
+  learner_created: true
+- name: src/engine/DuplicateEmailException.java
+  visible: true
+  learner_created: true
+- name: src/engine/NotPermittedException.java
+  visible: true
+  learner_created: true
+- name: src/engine/QuizNotFoundException.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/508/implement
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/91/stages/508/implement">JetBrains
+    Academy</a>
+  time: Tue, 18 Aug 2020 16:29:06 UTC
 record: -1

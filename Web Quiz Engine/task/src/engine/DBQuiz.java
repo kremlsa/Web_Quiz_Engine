@@ -24,6 +24,29 @@ public class DBQuiz {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int[] answer = new int[0];
 
+   //@ManyToOne
+    //@JoinColumn(name = "user_id", nullable = false)
+    //private User createdBy;
+   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+   private String createdBy;
+
+    //public User getCreatedBy() {
+    //    return createdBy;
+    //}
+
+    //public void setCreatedBy(User createdBy) {
+    //    this.createdBy = createdBy;
+    //}
+
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public int[] getAnswer() {
         return answer;
     }

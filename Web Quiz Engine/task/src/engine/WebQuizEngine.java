@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.security.Principal;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -136,6 +137,7 @@ class QuizManager {
     @Autowired
     private DBService dbService;
 
+
     //public QuizManager() {}
 
     /*@PostMapping(path = "/api/quizzes/{id}/solve", consumes = "application/json")
@@ -167,11 +169,26 @@ class QuizManager {
         }
     }
 
-    @PostMapping(value = "/api/quizzes")
+    /*@PostMapping(value = "/api/quizzes")
     public ResponseEntity<DBQuiz> saveDBQuiz(
            @Valid @RequestBody final DBQuiz dbquiz) {
         DBQuiz savedDBQuiz = dbService.saveDBQuiz(dbquiz);
         return new ResponseEntity<>(savedDBQuiz, HttpStatus.OK);
+    }*/
+
+
+    @PostMapping(value = "/api/quizzes")
+    public ResponseEntity<DBQuiz> saveDBQuiz(
+            @Valid @RequestBody final DBQuiz dbquiz, @Autowired Principal principal) {
+        try {
+           // System.out.println(principal.getName());
+            DBQuiz savedDBQuiz = dbService.saveDBQuiz(dbquiz, principal.getName());
+            return new ResponseEntity<>(savedDBQuiz, HttpStatus.OK);
+        } catch (Exception exc) {
+            System.out.println(exc);
+            throw exc;
+        }
+
     }
 
     /*@PostMapping(value = "/api/quizzes", consumes = "application/json")
@@ -214,5 +231,23 @@ class QuizManager {
                     HttpStatus.NOT_FOUND, "Quiz Not Found", exc);
         }
     }
+
+    @DeleteMapping(path = "/api/quizzes/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void deleteQuiz(@PathVariable long id,
+                           @Autowired Principal principal) {
+        System.out.print(principal);
+        dbService.deleteDBQuizById(id, principal.getName());
+    }
+    /*public ResponseEntity<DBQuiz> deleteDBQuizById(
+            @PathVariable("id") final Long id, @Autowired Principal principal) {
+        try {
+            dbService.deleteDBQuizById(id, principal.getName());
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception exc) {
+            throw new ResponseStatusException(
+                    HttpStatus.NO_CONTENT, "Quiz Not Found", exc);
+        }
+    }*/
 
 }

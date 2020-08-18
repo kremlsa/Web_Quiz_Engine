@@ -8,7 +8,9 @@ public interface DBService {
 
     DBQuiz getDBQuizById(Long id);
 
-    DBQuiz saveDBQuiz(DBQuiz DBQuiz);
+    void deleteDBQuizById(Long id, String username);
+
+    DBQuiz saveDBQuiz(DBQuiz DBQuiz, String username);
 
     //List<DBQuiz> getDBQuizByNameContaining(String searchString);
 
