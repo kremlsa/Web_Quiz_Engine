@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -135,7 +137,7 @@ class Quiz {
 class QuizManager {
     private List<Quiz> quizzes = new ArrayList<>();
     @Autowired
-    private DBService dbService;
+    private DBServiceImpl dbService;
 
 
     //public QuizManager() {}
@@ -204,11 +206,18 @@ class QuizManager {
         return quizzes;
     }*/
 
-    @GetMapping(path = "/api/quizzes")
+    /*@GetMapping(path = "/api/quizzes")
     public ResponseEntity<List<DBQuiz>> getDBQuiz() {
         List<DBQuiz> quizList = dbService.getAllDBQuiz();
         return new ResponseEntity<>(quizList, HttpStatus.OK);
+    }*/
+
+    @GetMapping(path = "/api/quizzes", produces = "application/json")
+    public ResponseEntity<Page<DBQuiz>> getDBQuiz(Pageable pageable) {
+        Page<DBQuiz> quizList = dbService.getAllDBQuizPage(pageable);
+        return new ResponseEntity<>(quizList, HttpStatus.OK);
     }
+
 
     /*@GetMapping(path = "/api/quizzes/{id}")
     public Quiz getQuiz(@PathVariable int id){

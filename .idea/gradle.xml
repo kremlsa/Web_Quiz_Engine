@@ -11,6 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Problems/Allocated memory" />
             <option value="$PROJECT_DIR$/Web Quiz Engine/task" />
           </set>
         </option>

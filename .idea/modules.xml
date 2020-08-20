@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Allocated memory/Problems-Allocated_memory.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Allocated memory/Problems-Allocated_memory.iml" group="Web_Quiz_Engine/Problems-Allocated_memory" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Allocated memory/Problems-Allocated_memory_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Allocated memory/Problems-Allocated_memory_main.iml" group="Web_Quiz_Engine/Problems-Allocated_memory" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Allocated memory/Problems-Allocated_memory_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Allocated memory/Problems-Allocated_memory_test.iml" group="Web_Quiz_Engine/Problems-Allocated_memory" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Web_Quiz_Engine.iml" filepath="$PROJECT_DIR$/.idea/modules/Web_Quiz_Engine.iml" group="Web_Quiz_Engine" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Web Quiz Engine/task/Web_Quiz_Engine-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Web Quiz Engine/task/Web_Quiz_Engine-task.iml" group="Web_Quiz_Engine/Web_Quiz_Engine-task" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Web Quiz Engine/task/Web_Quiz_Engine-task_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Web Quiz Engine/task/Web_Quiz_Engine-task_main.iml" group="Web_Quiz_Engine/Web_Quiz_Engine-task" />

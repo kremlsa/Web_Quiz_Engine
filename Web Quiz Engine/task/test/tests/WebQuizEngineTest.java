@@ -23,7 +23,7 @@ import static org.hyperskill.hstest.testing.expect.json.JsonChecker.isString;
 
 public class WebQuizEngineTest extends SpringTest {
     public WebQuizEngineTest() {
-        super(WebQuizEngine.class, 8889, "../quizdb.mv.db");
+        super(WebQuizEngine.class, "../quizdb.mv.db");
     }
 
     static void checkStatusCode(HttpResponse resp, int status) {

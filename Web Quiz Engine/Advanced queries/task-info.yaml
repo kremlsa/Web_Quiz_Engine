@@ -77,7 +77,7 @@ files:
 
     public class WebQuizEngineTest extends SpringTest {
         public WebQuizEngineTest() {
-            super(WebQuizEngine.class, 8889, "../quizdb.mv.db");
+            super(WebQuizEngine.class, "../quizdb.mv.db");
         }
 
         static void checkStatusCode(HttpResponse resp, int status) {
@@ -787,5 +787,21 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/projects/91/stages/509/implement
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #42
+
+    GET /api/quizzes/completed?page=0 should respond with status code 200, responded: 400
+
+    Response body:
+
+    {&quot;timestamp&quot;:&quot;2020-08-20T17:07:52.044+0000&quot;,&quot;status&quot;:400,&quot;error&quot;:&quot;Bad Request&quot;,&quot;message&quot;:&quot;Failed to convert value of type &#39;java.lang.String&#39; to required type &#39;java.lang.Long&#39;; nested exception is java.lang.NumberFormatException: For input string: \&quot;completed\&quot;&quot;,&quot;path&quot;:&quot;/api/quizzes/completed&quot;}
+
+    Please find below the output of your program during this failed test.
+
+    ---
+
+    2020-08-21 00:07:52.041  WARN 10356 --- [nio-8889-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type &#39;java.lang.String&#39; to required type &#39;java.lang.Long&#39;; nested exception is java.lang.NumberFormatException: For input string: &quot;completed&quot;]
+  time: Thu, 20 Aug 2020 17:07:53 UTC
 record: -1
