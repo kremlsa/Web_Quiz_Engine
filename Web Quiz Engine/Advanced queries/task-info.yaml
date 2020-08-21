@@ -786,22 +786,28 @@ files:
         }
     }
   learner_created: false
+- name: src/engine/SolRepository.java
+  visible: true
+  learner_created: true
+- name: src/engine/Solutions.java
+  visible: true
+  learner_created: true
+- name: src/engine/SolService.java
+  visible: true
+  learner_created: true
+- name: src/engine/SolController.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/509/implement
 status: Failed
 feedback:
   message: |-
-    Wrong answer in test #42
+    Wrong answer in test #8
 
-    GET /api/quizzes/completed?page=0 should respond with status code 200, responded: 400
+    GET /api/quizzes?page=0 should respond with status code 200, responded: 404
 
     Response body:
 
-    {&quot;timestamp&quot;:&quot;2020-08-20T17:07:52.044+0000&quot;,&quot;status&quot;:400,&quot;error&quot;:&quot;Bad Request&quot;,&quot;message&quot;:&quot;Failed to convert value of type &#39;java.lang.String&#39; to required type &#39;java.lang.Long&#39;; nested exception is java.lang.NumberFormatException: For input string: \&quot;completed\&quot;&quot;,&quot;path&quot;:&quot;/api/quizzes/completed&quot;}
-
-    Please find below the output of your program during this failed test.
-
-    ---
-
-    2020-08-21 00:07:52.041  WARN 10356 --- [nio-8889-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type &#39;java.lang.String&#39; to required type &#39;java.lang.Long&#39;; nested exception is java.lang.NumberFormatException: For input string: &quot;completed&quot;]
-  time: Thu, 20 Aug 2020 17:07:53 UTC
+    {&quot;timestamp&quot;:&quot;2020-08-21T16:10:10.675+0000&quot;,&quot;status&quot;:404,&quot;error&quot;:&quot;Not Found&quot;,&quot;message&quot;:&quot;No message available&quot;,&quot;path&quot;:&quot;/api/quizzes&quot;}
+  time: Fri, 21 Aug 2020 16:10:11 UTC
 record: -1

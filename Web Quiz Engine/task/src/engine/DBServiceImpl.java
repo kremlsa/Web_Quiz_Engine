@@ -9,13 +9,17 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class DBServiceImpl implements DBService {
 
+
+
     @Autowired
     private DBRepository DBRepository;
     private UserRepository userRepository;
+    private SolRepository solRepository;
 
     @Override
     public List<DBQuiz> getAllDBQuiz() {
@@ -90,4 +94,20 @@ public class DBServiceImpl implements DBService {
     public Page<DBQuiz> getAllDBQuizPage(Pageable pageable) {
         return DBRepository.findAll(pageable);
     }
+
+    public Page<Solutions> findAllCompletedQuizzesAsPage(String username, Pageable pageable) {
+        return solRepository.findAllByUserOrderByCompletedAtDesc(username, pageable);
+    }
+
+    public void saveSolution(String username, long dbQuizId) {
+        //var user = userRepository.findByUsername(username)
+         //       .orElseThrow(UserNotFoundException::new);
+        //var quiz = getDBQuizById(dbQuizId);
+        Solutions sol = new Solutions();
+        System.out.println("beforeSave");
+        solRepository.save(sol);
+        System.out.println("afterSave");
+        //solRepository.save(Solutions.createSolutions(username, dbQuizId));
+    }
+
 }

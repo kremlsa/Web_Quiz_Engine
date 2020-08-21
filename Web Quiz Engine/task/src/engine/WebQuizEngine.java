@@ -1,5 +1,6 @@
 package engine;
 
+import antlr.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,8 +137,14 @@ class Quiz {
 @RestController
 class QuizManager {
     private List<Quiz> quizzes = new ArrayList<>();
-    @Autowired
+
     private DBServiceImpl dbService;
+    private SolService solService;
+    @Autowired
+    public QuizManager(DBServiceImpl dbService, SolService solservice) {
+        this.dbService = dbService;
+        this.solService = solservice;
+    }
 
 
     //public QuizManager() {}
@@ -157,18 +164,20 @@ class QuizManager {
     }*/
 
     @PostMapping(path = "/api/quizzes/{id}/solve", consumes = "application/json")
-    public String solver(@PathVariable long id, @RequestBody  Answer answer){
-        try {
+    public String solver(@PathVariable long id, @RequestBody  Answer answer, @Autowired Principal principal){
+        //try {
             DBQuiz dbQuiz = dbService.getDBQuizById(id);
             if (Arrays.equals(answer.getAnswer(), dbQuiz.getAnswer())) {
+                //dbService.saveSolution(principal.getName(), id);
+                solService.saveSolution(principal.getName(), id);
                 return "{\"success\":true,\"feedback\":\"Congratulations, you're right!\"}";
             } else {
                 return "{\"success\":false,\"feedback\":\"Wrong answer! Please, try again.\"}";
             }
-        } catch (Exception exc) {
+        /*} catch (Exception exc) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Quiz Not Found", exc);
-        }
+                    HttpStatus.NOT_FOUND, "Some error", exc);
+        }*/
     }
 
     /*@PostMapping(value = "/api/quizzes")
@@ -214,8 +223,10 @@ class QuizManager {
 
     @GetMapping(path = "/api/quizzes", produces = "application/json")
     public ResponseEntity<Page<DBQuiz>> getDBQuiz(Pageable pageable) {
+
         Page<DBQuiz> quizList = dbService.getAllDBQuizPage(pageable);
         return new ResponseEntity<>(quizList, HttpStatus.OK);
+
     }
 
 
@@ -258,5 +269,17 @@ class QuizManager {
                     HttpStatus.NO_CONTENT, "Quiz Not Found", exc);
         }
     }*/
+
+    @GetMapping(path = "api/completed", produces = "application/json")
+    public ResponseEntity<Page<Solutions>> getCompletedQuizPage(Principal principal, Pageable pageable) {
+        //try {
+            Page<Solutions> solList = dbService.findAllCompletedQuizzesAsPage(principal.getName(), pageable);
+            return new ResponseEntity<>(solList, HttpStatus.OK);
+        /*} catch (Exception exc) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Quiz Not Found", exc);
+        }*/
+
+    }
 
 }
