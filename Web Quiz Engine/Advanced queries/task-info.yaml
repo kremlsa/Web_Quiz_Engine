@@ -798,16 +798,16 @@ files:
 - name: src/engine/SolController.java
   visible: true
   learner_created: true
+- name: src/engine/Utils.java
+  visible: true
+  learner_created: true
+- name: src/engine/SolDto.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/509/implement
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #8
-
-    GET /api/quizzes?page=0 should respond with status code 200, responded: 404
-
-    Response body:
-
-    {&quot;timestamp&quot;:&quot;2020-08-21T16:13:09.572+0000&quot;,&quot;status&quot;:404,&quot;error&quot;:&quot;Not Found&quot;,&quot;message&quot;:&quot;No message available&quot;,&quot;path&quot;:&quot;/api/quizzes&quot;}
-  time: Fri, 21 Aug 2020 16:13:10 UTC
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/91/stages/509/implement">JetBrains
+    Academy</a>
+  time: Sat, 22 Aug 2020 03:15:36 UTC
 record: -1

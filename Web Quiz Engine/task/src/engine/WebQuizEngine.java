@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -222,11 +224,14 @@ class QuizManager {
     }*/
 
     @GetMapping(path = "/api/quizzes", produces = "application/json")
-    public ResponseEntity<Page<DBQuiz>> getDBQuiz(Pageable pageable) {
-
+    public ResponseEntity<Page<DBQuiz>> getDBQuiz(@PageableDefault(value = 10) Pageable pageable) {
+        try {
         Page<DBQuiz> quizList = dbService.getAllDBQuizPage(pageable);
         return new ResponseEntity<>(quizList, HttpStatus.OK);
-
+        } catch (Exception exc) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Quiz Not Found", exc);
+        }
     }
 
 
@@ -243,13 +248,13 @@ class QuizManager {
     @GetMapping(path = "/api/quizzes/{id}")
     public ResponseEntity<DBQuiz> getDBQuizById(
             @PathVariable("id") final Long id) {
-        try {
+        //try {
             DBQuiz dbQuiz = dbService.getDBQuizById(id);
             return new ResponseEntity<>(dbQuiz, HttpStatus.OK);
-        } catch (Exception exc) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Quiz Not Found", exc);
-        }
+        //} catch (Exception exc) {
+           // throw new ResponseStatusException(
+          //          HttpStatus.NOT_FOUND, "Quiz Not Found", exc);
+        //}
     }
 
     @DeleteMapping(path = "/api/quizzes/{id}")
@@ -270,16 +275,16 @@ class QuizManager {
         }
     }*/
 
-    @GetMapping(path = "api/completed", produces = "application/json")
+    /*@GetMapping(path = "/api/completed")
     public ResponseEntity<Page<Solutions>> getCompletedQuizPage(Principal principal, Pageable pageable) {
-        //try {
-            Page<Solutions> solList = dbService.findAllCompletedQuizzesAsPage(principal.getName(), pageable);
+        try {
+            Page<Solutions> solList = solService.findAllCompletedQuizzesAsPage(principal.getName(), pageable);
             return new ResponseEntity<>(solList, HttpStatus.OK);
-        /*} catch (Exception exc) {
+        } catch (Exception exc) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Quiz Not Found", exc);
-        }*/
+        }
 
-    }
+    }*/
 
 }

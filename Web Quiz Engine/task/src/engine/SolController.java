@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,15 +32,12 @@ public class SolController {
 
 
 
-    /*@GetMapping(path = "api/completed", produces = "application/json")
-    public ResponseEntity<Page<Solutions>> getCompletedQuizPage(Principal principal, Pageable pageable) {
-        try {
-            Page<Solutions> solList = service.findAllCompletedQuizzesAsPage(principal.getName(), pageable);
-            return new ResponseEntity<>(solList, HttpStatus.OK);
-        } catch (Exception exc) {
-        throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Quiz Not Found", exc);
-    }
+    @GetMapping(path = "/api/quizzes/completed", produces = "application/json")
+    public ResponseEntity<Page<SolDto>> getCompletedQuizPage(Principal principal, @PageableDefault(value = 10) Pageable pageable) {
+    //public ResponseEntity<Page<String>> getCompletedQuizPage(Principal principal, Pageable pageable) {
 
-    }*/
+            //Page<Solutions> solList = service.findAllCompletedQuizzesAsPage(principal.getName(), pageable);
+        Page<SolDto> solList = service.findAllCompletedQuizzesAsPage(principal.getName(), pageable).map(Utils::convertCompletionEntityToDto);;
+            return new ResponseEntity<>(solList, HttpStatus.OK);
+    }
 }

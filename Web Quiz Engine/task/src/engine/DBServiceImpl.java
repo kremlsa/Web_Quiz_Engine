@@ -91,13 +91,17 @@ public class DBServiceImpl implements DBService {
         return DBRepository.findByNameLike(searchString);
     }
 
-    public Page<DBQuiz> getAllDBQuizPage(Pageable pageable) {
+   /*public Page<DBQuiz> getAllDBQuizPage(Pageable pageable) {
         return DBRepository.findAll(pageable);
+    }*/
+
+    public Page<DBQuiz> getAllDBQuizPage(Pageable pageable) {
+        return DBRepository.findAllPage(pageable);
     }
 
-    public Page<Solutions> findAllCompletedQuizzesAsPage(String username, Pageable pageable) {
+   /* public Page<Solutions> findAllCompletedQuizzesAsPage(String username, Pageable pageable) {
         return solRepository.findAllByUserOrderByCompletedAtDesc(username, pageable);
-    }
+    }*/
 
     public void saveSolution(String username, long dbQuizId) {
         //var user = userRepository.findByUsername(username)

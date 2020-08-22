@@ -16,7 +16,12 @@ public class SolService {
     @Autowired
     private SolRepository solRepository;
 
-    /*public Page<Solutions> findAllCompletedQuizzesAsPage(String username, Pageable pageable) {
+    public Page<Solutions> findAllCompletedQuizzesAsPage(String username, Pageable pageable) {
+
+        return solRepository.findAllByUserOrderByCompletedAtDesc(username, pageable);
+    }
+
+   /* public Page<String> findAllCompletedQuizzesAsPage(String username, Pageable pageable) {
 
         return solRepository.findAllByUserOrderByCompletedAtDesc(username, pageable);
     }*/

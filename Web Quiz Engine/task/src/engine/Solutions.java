@@ -1,5 +1,7 @@
 package engine;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -8,11 +10,13 @@ import java.time.LocalDateTime;
 public class Solutions {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
 
     /*@ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;*/
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String user;
 
     /*@ManyToOne
@@ -93,13 +97,18 @@ System.out.println(user + " " + dbquizId);
         this.completedAt = completedAt;
     }
 
-    @Override
+//    @Override
     public String toString() {
-        return "Completion{" +
+        /*return "Completion{" +
                 "id=" + id +
                 ", user=" + user +
                 ", quiz=" + dbquizId +
                 ", completedAt=" + completedAt +
+                '}';*/
+        return "Completion{" +
+                "id=" + dbquizId +
+                ", completedAt=" + completedAt +
                 '}';
+
     }
 }
